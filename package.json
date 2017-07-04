@@ -1,0 +1,27 @@
+{
+  "name": "GraphToImage_PhantomNodeJS",
+  "version": "1.0.0",
+  "description": "",
+  "engines": {
+    "node": "5.9.1"
+  },
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "webshot": "^0.18.0",
+    "express": "4.15.3"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ghosteyetech/GraphToImage_PhantomNodeJS.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ghosteyetech/GraphToImage_PhantomNodeJS/issues"
+  },
+  "homepage": "https://github.com/ghosteyetech/GraphToImage_PhantomNodeJS#readme"
+}
