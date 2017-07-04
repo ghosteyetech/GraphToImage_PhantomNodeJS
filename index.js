@@ -3,6 +3,7 @@ const express = require('express');
 const app = express();
 var path = require('path');
 
+const PORT = process.env.PORT || 3000;
 
 var fileName = "image.png";
 var imageFolder = __dirname + '/images/';
@@ -133,6 +134,6 @@ app.get('/file/:name', function (req, res, next) {
 
 });
 
-app.listen(3000, function () {
+app.listen(PORT, function () {
   console.log('Example app listening on port 3000!')
 });
