@@ -92,20 +92,27 @@ app.get('/save', function(req, res) {
         captureSelector : "#container"
     };
 
-    webshot('http://localhost:3000/charts', imageSavinPath , options, (err) => {
-        // screenshot now saved to google.png
-        //res.send('Success!!!!!')
+    webshot('https://buzz-graph.herokuapp.com/charts', options, function (err, renderStream) {
+      
+      var imageBuffers = [];
 
-        var fileName = imageSavinPath;
-        res.sendFile(fileName, options, function (err) {
-            if (err) {
-            next(err);
-            } else {
-            console.log('Sent:', fileName);
-            }
-        });
+      renderStream.on('data', function (data) {
+        imageBuffers.push(data);
+      });
+
+      renderStream.on('end', function () {
+        var imageBuffer = Buffer.concat(imageBuffers);
+
+        // Do something with your buffer (imageBuffer);
+
+        // screenshot now saved to google.png
+        res.end(imageBuffer, 'binary');
+
+
+      });
 
     });
+    
 });
 
 //
