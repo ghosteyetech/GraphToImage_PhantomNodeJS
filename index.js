@@ -94,6 +94,7 @@ app.get('/save', function(req, res) {
 
     webshot('https://buzz-graph.herokuapp.com/charts', options, function (err, renderStream) {
       
+      console.log("image captured...");
       var imageBuffers = [];
 
       renderStream.on('data', function (data) {
@@ -112,7 +113,7 @@ app.get('/save', function(req, res) {
       });
 
     });
-    
+
 });
 
 //
