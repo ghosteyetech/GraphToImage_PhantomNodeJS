@@ -88,7 +88,7 @@ app.get('/save', function(req, res) {
                 link.innerText = 'ghost';
             } 
         },
-        renderDelay : 500,
+        renderDelay : 2000,
         captureSelector : "#container"
     };
 
