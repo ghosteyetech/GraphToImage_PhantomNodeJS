@@ -12,7 +12,8 @@
   "dependencies": {
     "webshot": "^0.18.0",
     "pg": "2.x",
-    "express": "4.15.3"
+    "express": "4.15.3",
+    "body-parser": "^1.17.2"
   },
   "repository": {
     "type": "git",

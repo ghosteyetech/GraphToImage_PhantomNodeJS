@@ -59,6 +59,20 @@ webshot('www.buzzflow.io', imageSavinPath , options, (err) => {
 
 */
 
+//To get post request
+var bodyParser = require('body-parser');
+app.use(bodyParser.json()); // support json encoded bodies
+app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
+
+app.post('/buzz/charts', function(req, res) {
+    var user_id = req.body.id;
+    var token = req.body.token;
+    var geo = req.body.geo;
+
+
+    res.send(user_id + ' ' + token + ' ' + geo);
+});
+
 
 app.get('/', function (req, res) {
   res.send('Hello World!')
