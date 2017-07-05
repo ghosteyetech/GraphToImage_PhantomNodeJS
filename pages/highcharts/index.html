@@ -13,23 +13,35 @@
 <div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
 
 <script>
+
+    var options = {
+        chart: {
+            renderTo: 'container',
+            type: 'spline'
+        },
+        series: [{}]
+    };
+
+    $.getJSON('buzzdata', function(data) {
+        options.series[0].data = data;
+        var chart = new Highcharts.Chart(options);
+    });
+
 // Create the chart
-Highcharts.chart('container', {
+/*Highcharts.chart('container', {
     chart: {
         type: 'column'
     },
     title: {
         text: 'THIS WEEK\'S PIPELINE PROGRESS'
     },
- /*   subtitle: {
-        text: 'Click the columns to view versions. Source: <a href="http://netmarketshare.com">netmarketshare.com</a>.'
-    }, */
+ 
     xAxis: {
         type: 'category'
     },
     yAxis: {
         title: {
-            text: '\u00A0'/*'Total percent market share' */
+            text: '\u00A0'
         }
 
     },
@@ -96,8 +108,9 @@ Highcharts.chart('container', {
 	    
 	}]
     }],
+
     
-});
+});*/
 </script>
 </head>
 <body>
