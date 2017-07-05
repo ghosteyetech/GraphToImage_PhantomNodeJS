@@ -61,45 +61,45 @@
     }];
 
 
-    Highcharts.chart('container', {
-    chart: {
-        type: 'column'
-    },
-    title: {
-        text: 'THIS WEEK\'S PIPELINE PROGRESS'
-    },
- 
-    xAxis: {
-        type: 'category'
-    },
-    yAxis: {
+    var options = {
+        chart: {
+            type: 'column'
+        },
         title: {
-            text: '\u00A0'
-        }
-
-    },
-    legend: {
-        enabled: false
-    },
-    plotOptions: {
-        series: {
-            borderWidth: 0,
-            dataLabels: {
-                enabled: true,
-                format: '{point.y:.1f}%'
+            text: 'THIS WEEK\'S PIPELINE PROGRESS'
+        },
+     
+        xAxis: {
+            type: 'category'
+        },
+        yAxis: {
+            title: {
+                text: '\u00A0'
             }
-        }
-    },
 
-    tooltip: {
-        headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
-        pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:.2f}%</b> of total<br/>'
-    },
+        },
+        legend: {
+            enabled: false
+        },
+        plotOptions: {
+            series: {
+                borderWidth: 0,
+                dataLabels: {
+                    enabled: true,
+                    format: '{point.y:.1f}%'
+                }
+            }
+        },
 
-    series: []
+        tooltip: {
+            headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
+            pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:.2f}%</b> of total<br/>'
+        },
+
+        series: []
 
     
-    });
+    };
 
     options.series[0] = towDta;
     var chart = new Highcharts.Chart(options);
