@@ -59,6 +59,9 @@ webshot('www.buzzflow.io', imageSavinPath , options, (err) => {
 
 */
 
+
+var dataJSON = "";
+
 //To get post request
 var bodyParser = require('body-parser');
 app.use(bodyParser.json()); // support json encoded bodies
@@ -69,7 +72,7 @@ app.post('/buzz/charts', function(req, res) {
     var token = req.body.token;
     var geo = req.body.geo;
 
-
+    dataJSON = geo;
     res.send(user_id + ' ' + token + ' ' + geo);
 });
 
@@ -82,6 +85,9 @@ app.get('/new', function (req, res) {
   res.send('Hello Worldsxsxsx!')
 });
 
+app.get('/getjson', function (req, res) {
+  res.send(dataJSON);
+});
 
 app.get('/createtable', function (req, res) {
   createTable();
