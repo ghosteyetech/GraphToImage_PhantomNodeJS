@@ -14,6 +14,100 @@
 
 <script>
 
+    var towDta = [{
+        name: 'Brands',
+        colorByPoint: true,
+        data: [{
+            name: 'New/Leads',
+            y: 11,
+            
+        }, {
+            name: 'Met',
+            y: 2,
+            
+        }, {
+            name: 'Sent Proposal',
+            y: 2,
+            
+        }, {
+            name: 'On-boarding',
+            y: 2,
+            
+        }, {
+            name: 'Try Later',
+            y: 2,
+            
+        }, {
+            name: 'On-Trial',
+            y: 0,
+            
+        }, {
+        name: 'Dropped-out',
+        y: 0,
+        
+    }, {
+        name: 'Paid',
+        y: 1,
+        
+    }, {
+        name: 'Closed Won',
+        y: 1,
+        
+    }, {
+        name: 'Closed Lost',
+        y: 0,
+        
+    }]
+    }];
+
+
+    Highcharts.chart('container', {
+    chart: {
+        type: 'column'
+    },
+    title: {
+        text: 'THIS WEEK\'S PIPELINE PROGRESS'
+    },
+ 
+    xAxis: {
+        type: 'category'
+    },
+    yAxis: {
+        title: {
+            text: '\u00A0'
+        }
+
+    },
+    legend: {
+        enabled: false
+    },
+    plotOptions: {
+        series: {
+            borderWidth: 0,
+            dataLabels: {
+                enabled: true,
+                format: '{point.y:.1f}%'
+            }
+        }
+    },
+
+    tooltip: {
+        headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
+        pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:.2f}%</b> of total<br/>'
+    },
+
+    series: []
+
+    
+    });
+
+    options.series[0] = towDta;
+    var chart = new Highcharts.Chart(options);
+
+
+
+
+    /*
     var options = {
         chart: {
             renderTo: 'container',
@@ -26,6 +120,11 @@
         options.series[0].data = data;
         var chart = new Highcharts.Chart(options);
     });
+    */
+
+    
+
+    
 
 // Create the chart
 /*Highcharts.chart('container', {
