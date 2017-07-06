@@ -58,6 +58,14 @@ app.post('/buzz/charts', function(req, res) {
 
 });
 
+app.get('/column', function(req, res) {
+    res.sendFile(path.join(__dirname + '/pages/amCharts/column.html'));
+});
+
+app.get('/bar', function(req, res) {
+    res.sendFile(path.join(__dirname + '/pages/amCharts/barStacked.html'));
+});
+
 function getGraphImage(response, graphType){
 
   var options = {
