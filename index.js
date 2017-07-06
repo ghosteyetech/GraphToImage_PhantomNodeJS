@@ -4,6 +4,7 @@ const app = express();
 var path = require('path');
 
 const PORT = process.env.PORT || 3000;
+const SERVER_URL = 'https://buzz-graph.herokuapp.com/';
 
 var pg = require('pg');
 pg.defaults.ssl = true;
@@ -42,7 +43,7 @@ app.post('/buzz/charts', function(req, res) {
     var data = req.body.data;
 
     var viewOnly = req.body.viewonly;
-    
+
     buzzdata = data;
     //res.send(instance_id + ' ' + type + ' column data' + data);
     console.log("============>Graph type :"+type);
@@ -73,7 +74,7 @@ function getGraphImage(response, graphType){
         captureSelector : "#chartdiv"
     };
 
-    var captureUrl = 'http://localhost:3000/'+graphType;
+    var captureUrl = SERVER_URL + graphType;
 
     console.log("Url: "+captureUrl);
 
