@@ -18,6 +18,89 @@ app.get('/', function (req, res) {
   res.send('Hello World!')
 });
 
+//==================================AM Charts
+//GET
+var buzzdata = null;
+app.get('/buzzdata', function(req, res) {
+
+  console.log("Getting buzzdata /buzzdatacolumn");
+  console.log(buzzdata);
+  res.send(buzzdata);    
+
+});
+//Serving other dependecies scripts for amcharts
+app.get('/amcharts/:name', function(req, res) {
+    var fileName = req.params.name;
+    res.sendFile(path.join(__dirname + '/pages/amCharts/amcharts/'+fileName));
+});
+
+//POST
+app.post('/buzz/charts', function(req, res) {
+
+    var instance_id = req.body.instance_id;
+    var type = req.body.type;
+    var data = req.body.data;
+
+    var viewOnly = req.body.viewonly;
+    
+    buzzdata = data;
+    //res.send(instance_id + ' ' + type + ' column data' + data);
+    console.log("============>Graph type :"+type);
+
+    if(viewOnly && type == "column"){
+      res.sendFile(path.join(__dirname + '/pages/amCharts/column.html'));
+    }else if(viewOnly && type == "bar"){
+      res.sendFile(path.join(__dirname + '/pages/amCharts/barStacked.html'));
+    }else{
+      getGraphImage(res, type);
+    }
+
+});
+
+function getGraphImage(response, graphType){
+
+  var options = {
+        onLoadFinished: function() {
+            /*var links = document.getElementsByClassName("highcharts-credits");///document.getElementsByTagName('text');
+
+            for (var i=0; i<links.length; i++) {
+                var link = links[i];
+                link.innerHTML = 'My custom text';
+                link.innerText = 'ghost';
+            } */
+        },
+        renderDelay : 2000,
+        captureSelector : "#chartdiv"
+    };
+
+    var captureUrl = 'http://localhost:3000/'+graphType;
+
+    console.log("Url: "+captureUrl);
+
+    webshot( captureUrl, options, function (err, renderStream) {
+      
+      var imageBuffers = [];
+
+      renderStream.on('data', function (data) {
+        imageBuffers.push(data);
+      });
+
+      renderStream.on('end', function () {
+        var imageBuffer = Buffer.concat(imageBuffers);
+
+        // Do something with your buffer (imageBuffer);
+
+        // screenshot now saved to google.png
+        response.writeHead(200, {'Content-Type': 'image/png' });
+        response.end(imageBuffer, 'binary');
+
+
+      });
+
+    });
+
+}
+//==================================AM Charts
 
 //===============PostSQL===================================================================
 app.get('/createtable', function (req, res) {
